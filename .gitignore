@@ -1,0 +1,11 @@
+*.pref
+*.rxuser
+/PerformanceTests/Results
+/Tests/Cypress/node_modules
+/Tests/Cypress/cypress/screenshots
+/Tests/Cypress/cypress/videos
+/Tests/Cypress/output
+/Tests/ReadyAPI/ReadyAPI_report
+/.vs
+importExecutionResultsError.json
+node_modules

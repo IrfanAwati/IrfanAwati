@@ -1,0 +1,5 @@
+env.devStream = 'order'
+env.product = 'LIS.dispatch'
+env.developers = 'tyson.paul@lisec.com,alfred.paul@lisec.com,marko.mocnik@lisec.com'
+env.accountName = '[DP] NG - Order - LIS.dispatch Phase 2'
+env.accountKey = '1.100087.04'

@@ -1,0 +1,109 @@
+def importByDefault = false
+if ( env.BRANCH_NAME == "master" || env.BRANCH_NAME == "main" || env.BRANCH_NAME.startsWith("release-") )
+    importByDefault = true
+def readyApiEnv = ''
+def dbCredentialsId = ''
+def sqlServer = ''
+def dbName = ''
+
+pipeline {
+    agent {
+        node {
+            label 'atse-bbot3'
+        }
+    }
+    
+    parameters {
+        choice(name: 'EXECUTION_ENV', choices: ['Test', 'Dev', 'UAT'], description: 'Environment to execute against')
+        booleanParam(name: 'RESET_DB', defaultValue: false, description: 'If checked the DB reset scripts will be executed before the test runs')
+        booleanParam(name: 'CYPRESS', defaultValue: true, description: 'Wether or not to run Cypress tests')
+        booleanParam(name: 'READYAPI', defaultValue: true, description: 'Wether or not to run ReadyAPI tests')
+        booleanParam(name: 'IMPORT_RESULTS_TO_JIRA', defaultValue: importByDefault, description: 'If checked results will be uploaded to Jira, creating new test execution issues')
+    }
+    
+    stages {
+        stage('Initialize') {
+            steps {
+                load "Jenkins-env.groovy"
+
+                script {
+                    scriptPath = "${WORKSPACE}/Scripts/reset_azure_DB.sql"
+                    
+                    if (params.EXECUTION_ENV == 'Dev') {
+                        dbCredentialsId = 'dev-shop-01-sql'
+                        sqlServer = 'dev-shop-01-sql'
+                        dbName = 'dev-dt-01-Dispatch'
+                        readyApiEnv = 'azure-dev'
+                    } else if (params.EXECUTION_ENV == 'Test') {
+                        dbCredentialsId = 'tst-shop-01-sql'
+                        sqlServer = 'tst-shop-01-sql'
+                        dbName = 'tst-dt-01-Dispatch'
+                        readyApiEnv = 'azure-tst'
+                    } else if (params.EXECUTION_ENV == 'UAT') {
+                        dbCredentialsId = 'dem-shop-01-sql'
+                        sqlServer = 'dem-shop-01-sql'
+                        dbName = 'dem-dt-01-Dispatch'
+                        readyApiEnv = 'azure-uat'
+                    }
+                }
+            }
+        }
+
+        stage('Reset DB') {
+            when {
+                expression { params.RESET_DB }
+            }
+            steps {
+                withCredentials([usernamePassword(credentialsId: dbCredentialsId, passwordVariable: 'DB_PASSWORD', usernameVariable: 'DB_USER')]) {
+                    script {
+                        DB_PASSWORD = escapeSpecialChars(DB_PASSWORD)
+                        bat "\"C:\\Program Files\\Microsoft SQL Server\\Client SDK\\ODBC\\170\\Tools\\Binn\\SQLCMD.EXE\" -S ${sqlServer}.database.windows.net -d ${dbName} -U ${DB_USER} -P ${DB_PASSWORD} -I -i \"${scriptPath}\""
+                    }
+                }
+            }
+        }
+
+        stage('ReadyApi Tests') {
+            when {
+                expression { params.READYAPI }
+            }
+            steps {
+                script {
+                    commonPipeline.performReadyAPIRegressionTests( 
+                            readyApiEnvironment: readyApiEnv, 
+                            readyApiProjectFile: "${WORKSPACE}\\Tests\\ReadyAPI\\Analytics-readyapi-project.xml",
+                            reportDir: 'Tests\\ReadyAPI\\ReadyAPI_report' )
+                }
+            }
+        }
+        stage('Cypress Tests') {
+            when {
+                expression { params.CYPRESS }
+            }
+            agent { 
+                label 'docker'
+            }
+            steps {
+                dir ("Tests/Cypress/") {
+                    script {
+                        commonPipeline.performCypressRegressionTests( cypressEnvironment: readyApiEnv )
+                    }
+                }
+            }
+        }
+    }
+    post {
+        success {
+            script { commonPipeline.postSuccess(2) }
+        }
+        fixed {
+            script { commonPipeline.postFixed(2) }
+        }
+        unstable {
+            script { commonPipeline.postUnstable(2) }
+        }
+        failure {
+            script { commonPipeline.postFailure(2) }
+        }
+    }
+}
