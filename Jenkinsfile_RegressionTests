@@ -1,4 +1,4 @@
-//comment just for fun
+//comment just for fun 02:
 def importByDefault = false
 if ( env.BRANCH_NAME == "master" || env.BRANCH_NAME == "main" || env.BRANCH_NAME.startsWith("release-") )
     importByDefault = true
