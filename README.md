@@ -126,10 +126,12 @@ I enjoy immersive adventures both in-game and on my ADV bike—whether it's navi
 ## GitHub Contribution Snake
 
 <p align="center">
-  <img src="output/github-contribution-grid-snake.svg" alt="GitHub contribution snake" />
+  <img src="https://raw.githubusercontent.com/IrfanAwati/output/github-contribution-grid-snake.svg" alt="GitHub contribution snake" />
 </p>
 
-This profile uses a GitHub Actions workflow to generate a snake animation on the contribution graph. The image will appear after the workflow runs.
+![Snake animation](https://github.com/IrfanAwati/IrfanAwati/blob/output/github-contribution-grid-snake.svg)
+
+This profile uses a GitHub Actions workflow to generate a snake animation on the contribution graph. The image will appear after the workflow runs and the `output` branch is created.
 
 ## Connect with Me
 
