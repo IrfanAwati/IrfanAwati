@@ -58,6 +58,47 @@ I build secure, scalable Azure environments and automate delivery with powerful 
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" width="40" alt="GitHub"/>
 </p>
 
+<p align="center">
+  <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/argocd.svg?color=2E2CFF" width="40" alt="ArgoCD"/>
+  <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/flux.svg?color=0078D4" width="40" alt="Flux"/>
+  <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/bridgecrew.svg?color=5E5DF0" width="40" alt="Checkov"/>
+  <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/aqua.svg?color=1478C6" width="40" alt="Trivy"/>
+  <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/sonarcloud.svg?color=4D4DFF" width="40" alt="SonarCloud"/>
+  <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/datadog.svg?color=632CA6" width="40" alt="DataDog"/>
+  <img src="https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/embold.svg?color=FF7B00" width="40" alt="Embold"/>
+</p>
+
+## Adventure Log
+
+I track, tour, and ride my ADV bike on routes that feel like navigating complex cluster topologies: every turn is a decision, every trail is a system status check.
+
+<p align="center">
+  <img src="https://via.placeholder.com/900x260?text=Adventure+Map+Placeholder" alt="Adventure Map Placeholder" width="100%" style="max-width:900px;border-radius:16px;" />
+</p>
+
+### Trail Map
+
+- 📍 **Desert Signal Loop** – Dubai sands and high-speed route planning
+- 📍 **Hatta Ridge** – steep climbs, route validation, and cluster resilience
+- 📍 **Coastal Patrol** – beach gravel, navigation precision, and live telemetry feel
+
+### Add Your Locations
+
+Use this section to add new ride locations and see them reflected on the route map.
+
+```yaml
+adventure_routes:
+  - name: "Wadi gravel loop"
+    location: "Dubai"
+    note: "Recon for the next cluster hardening sprint"
+  - name: "High Ridge trail"
+    location: "Hatta"
+    note: "Performance and control in rough terrain"
+  - name: "Coastal patrol"
+    location: "Ras Al Khaimah"
+    note: "Wide-open riding and system status checks"
+```
+
 ## Profile Stats
 
 <p align="center">
@@ -72,7 +113,7 @@ I build secure, scalable Azure environments and automate delivery with powerful 
   <img src="https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGR3eDQ1aWp0YzF4cGRycW0xMHdtYWR4a3B0eGR5ZGg5emtud2duMyZlcD12MV9naWZzX3NlYXJjaCZjdD1n/nuh7EO8bHbj4k9BZFz/giphy.gif" width="300" alt="Prince of Persia style animation" />
 </p>
 
-I enjoy immersive games like Far Cry and Prince of Persia while building automation tools and cloud solutions.
+I enjoy immersive adventures both in-game and on my ADV bike—whether it's navigating Half-Life 2's dystopian routes or conquering Far Cry's wilderness.
 
 ## Interests
 
