@@ -12,19 +12,20 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
+      - name: Prepare output folder
+        run: mkdir -p output
+
       - name: Generate contribution snake SVG
         uses: Platane/snk@master
         with:
           github_user_name: IrfanAwati
           github_repo_name: IrfanAwati
-          svg_out_path: dist/github-contribution-grid-snake.svg
+          svg_out_path: output/github-contribution-grid-snake.svg
 
       - name: Commit snake SVG
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          mkdir -p output
-          mv dist/github-contribution-grid-snake.svg output/github-contribution-grid-snake.svg
           git add output/github-contribution-grid-snake.svg
           git diff --cached --quiet || git commit -m "Update GitHub contribution snake"
           git push
