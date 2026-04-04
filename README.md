@@ -131,6 +131,12 @@ I enjoy immersive adventures both in-game and on my ADV bike—whether it's navi
 
 ![Snake animation](https://github.com/IrfanAwati/IrfanAwati/blob/output/github-contribution-grid-snake.svg)
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/IrfanAwati/IrfanAwati/output/github-contribution-grid-snake-dark.svg">
+  <source media="(prefers-color-scheme: light)" srcset="https://raw.githubusercontent.com/IrfanAwati/IrfanAwati/output/github-contribution-grid-snake.svg">
+  <img alt="github contribution grid snake animation" src="https://raw.githubusercontent.com/IrfanAwati/IrfanAwati/output/github-contribution-grid-snake.svg">
+</picture>
+
 This profile uses a GitHub Actions workflow to generate a snake animation on the contribution graph. The image will appear after the workflow runs and the `output` branch is created.
 
 ## Connect with Me
